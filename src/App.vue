@@ -21,11 +21,10 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  padding: 20px;
-}
+  }
 .button-div {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 </style>
 <script>
