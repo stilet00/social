@@ -1,13 +1,20 @@
 <template>
 <div class="container">
- <h1>This is stilet and Loci main page</h1>
+ <HelloWorld
+ msg="Stilet and Loci social"
+ />
 </div>
 </template>
 
 <script>
+import HelloWorld from "@/components/HelloWorld";
+
 export default {
-name: "MainPage"
-}
+    name: "MainPage",
+    components: {
+    HelloWorld
+  }
+};
 </script>
 
 <style scoped>

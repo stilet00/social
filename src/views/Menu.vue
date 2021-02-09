@@ -1,20 +1,29 @@
 <template>
-  <div id="nav">
+    <div id="nav">
+      <router-link to="/">Main page</router-link>
+      <router-link to="/about">About</router-link>
+      <router-link to="/home">Home</router-link>
+      <router-link to="/friends">Friends</router-link>
+      <router-link to="/myprofile">My profile</router-link>
+      <router-link to="/news">News</router-link>
+      <router-link to="/people"
+                   @friendAdded="friendHasBeenAdded"
 
-    <router-link to="/">Main page</router-link>
-    <router-link to="/about">About</router-link>
-    <router-link to="/home">Home</router-link>
-    <router-link to="/friends">Friends</router-link>
-    <router-link to="/myprofile">My profile</router-link>
-    <router-link to="/news">News</router-link>
+      >People</router-link>
 
-  </div>
+    </div>
+
 
 </template>
 
 <script>
 export default {
-name: "Menu"
+name: "Menu",
+  methods: {
+    friendHasBeenAdded() {
+      console.log('yes')
+    }
+  }
 }
 </script>
 
@@ -23,9 +32,12 @@ name: "Menu"
 
 #nav {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
+  justify-content: space-evenly;
   background: grey;
+  width: 30%;
+  margin: 0 auto;
 }
 
 #nav a {
@@ -36,4 +48,5 @@ name: "Menu"
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
 </style>

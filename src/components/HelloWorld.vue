@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h1>This is registration page of stilet and loci social</h1>
+
   </div>
 </template>
 
