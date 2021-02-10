@@ -8,12 +8,11 @@
           :key="man.name"
           :id="man.id"
       >
-        <h1>Name: {{man.name + man.surName}}</h1>
-        <p>Age: {{man.age}}</p>
-        <img :src="man.thumbnail" alt="" width="100px" height="100px">
-
+        <img :src="man.thumbnail" alt="" width="50px" height="50px">
+        <h2>{{man.name + " " + man.surName}}</h2>
+        
         <button
-            @click="removeFromFriends"
+          @click="removeFromFriends"
         >Remove from friend</button>
       </li>
 
@@ -37,5 +36,19 @@ export default {
 </script>
 
 <style scoped>
-
+ul {
+  width: 100%;
+  padding: 0;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  align-items: center;
+}
+button {
+  width: 27%;
+}
 </style>

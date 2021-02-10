@@ -6,9 +6,8 @@
         :key="man.name"
         :id="man.id"
         >
-        <h1>Name: {{man.name + ' ' + man.surName}}</h1>
-          <p>Age: {{man.age}}</p>
-          <img :src="man.thumbnail" alt="" width="100px" height="100px">
+        <img :src="man.thumbnail" alt="" width="50px" height="50px">
+        <h2>{{man.name + ' ' + man.surName}}</h2>
           <button
           v-if="!man.isAFriend"
           @click="addToFriends"
@@ -40,23 +39,19 @@ name: "People",
 </script>
 
 <style scoped>
-ul {
-  text-align: center;
+.people-list {
   width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+ul {
+  width: 100%;
+  padding: 0;
 }
 li {
-  width: 70%;
   display: flex;
   justify-content: space-between;
-  border: 2px solid black;
   margin-bottom: 10px;
   border-radius: 10px;
-  padding: 10px;
-  box-shadow: 5px 5px 5px grey;
   box-sizing: border-box;
+  align-items: center;
 }
 </style>
