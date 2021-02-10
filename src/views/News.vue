@@ -1,12 +1,18 @@
 <template>
 <div class="news">
-dasdadasd
+  <PostCreate
+      :loggedUser="this.userPersonal"
+
+  />
 </div>
 </template>
 
 <script>
+import PostCreate from "@/components/PostCreate";
 export default {
-  name: "News"
+  props:['userPersonal'],
+  name: "News",
+  components: {PostCreate}
 }
 </script>
 

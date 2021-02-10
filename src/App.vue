@@ -23,6 +23,7 @@
         @friendRemoved="removingFriend"
         :friends="userFriends"
         :people="allPeople"
+        :userPersonal="user"
     />
   </div>
 </template>
@@ -37,12 +38,26 @@
   }
 </style>
 <script>
+
 import Velocity from 'velocity-animate'
 import Menu from "@/views/Menu";
 export default {
   components: {Menu},
   data() {
     return {
+      user: {
+        id: 23342424242424,
+        name: 'Iron',
+        surName: 'Man',
+        age: 27,
+        thumbnail: 'https://cdn.igromania.ru/mnt/news/7/6/b/a/7/6/86257/6122e9f65da7ef05_1920xH.jpg',
+        posts: [
+          {
+
+          }
+        ]
+
+      },
       menuPressed: false,
       userFriends: [],
       allPeople: [
@@ -52,7 +67,12 @@ export default {
           surName: 'vasilievych',
           age: 35,
           thumbnail: 'https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg',
-          isAFriend: false
+          isAFriend: false,
+          posts: [
+            {
+
+            }
+          ]
 
         },
         {
