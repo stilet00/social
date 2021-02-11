@@ -1,6 +1,6 @@
 <template>
 <div class="post-container">
-  <img src="https://cdn.jpegmini.com/user/images/slider_puffin_before_mobile.jpg" alt="" width="50px">
+  <img :src="loggedUser.thumbnail" alt="" width="50px">
   <input type="text" placeholder="What is new?">
   <button
   @click="createPost"
@@ -11,13 +11,16 @@
 
 <script>
 class Post {
-  constructor(author, description) {
-    this.uniqueId = Symbol(Math.floor(Math.random()*10));
-    this.author = author;
+  constructor(user, description) {
+    this.author = user.name + ' ' + user.surName;
+    this.authorId = user.id;
+    this.photo = user.thumbnail;
     this.date = this.getTime();
+    this.time = new Date().getTime();
     this.description = description || null;
     this.comments = [];
     this.likes = 0;
+    this.likedUsers = [];
   }
   getTime() {
     let date = new Date();
@@ -34,8 +37,8 @@ export default {
   props:['loggedUser'],
   methods: {
     createPost(e) {
-      let post = new Post(this.loggedUser.name, e.target.previousSibling.value)
-      console.log(post)
+      let post = new Post(this.loggedUser, e.target.previousSibling.value)
+      this.$emit('postCreated', post)
     }
   }
 }

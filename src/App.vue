@@ -21,7 +21,9 @@
     <router-view
         @friendAdded="newFriend"
         @friendRemoved="removingFriend"
-        :friends="userFriends"
+        @newPost="saveUserPost"
+        @postLiked="catchLike"
+        :friends="user.friends"
         :people="allPeople"
         :userPersonal="user"
     />
@@ -51,15 +53,11 @@ export default {
         surName: 'Man',
         age: 27,
         thumbnail: 'https://cdn.igromania.ru/mnt/news/7/6/b/a/7/6/86257/6122e9f65da7ef05_1920xH.jpg',
-        posts: [
-          {
-
-          }
-        ]
-
+        location: 'New York',
+        posts: [],
+        friends: [],
       },
       menuPressed: false,
-      userFriends: [],
       allPeople: [
         {
           id: 1231230424124,
@@ -69,9 +67,8 @@ export default {
           thumbnail: 'https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg',
           isAFriend: false,
           posts: [
-            {
-
-            }
+            { "authorId": "1231230424124", "author": "Hulk vasilievych", "photo": "https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg", "date": "17:54 - 11/02/2021", "time": 1613058870452, "description": "Let's crush some buildings!!!", "comments": [], "likes": 0, "likedUsers": [] },
+            { "authorId": "1231230424124", "author": "Hulk vasilievych", "photo": "https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg", "date": "18:06 - 11/02/2021", "time": 1613058870453, "description": "I am tired!!!", "comments": [], "likes": 10, "likedUsers": [] }
           ]
 
         },
@@ -81,7 +78,10 @@ export default {
           surName: 'Odinovich',
           age: 3000,
           thumbnail: 'https://i.pinimg.com/originals/5c/84/27/5c84270dc20df2dcfffe305d498dbfb4.jpg',
-          isAFriend: false
+          isAFriend: false,
+          posts: [
+            { "authorId": "405565656", "author": "Thor Odinovich", "photo": "https://i.pinimg.com/originals/5c/84/27/5c84270dc20df2dcfffe305d498dbfb4.jpg", "date": "18:07 - 11/02/2021", "time": 1613060925844, "description": "For ODIN!", "comments": [], "likes": 3, "likedUsers": [] }
+          ]
 
         },
         {
@@ -90,7 +90,8 @@ export default {
           surName: 'Amerika',
           age: 98,
           thumbnail: 'https://i.pinimg.com/originals/3a/7b/ab/3a7bab297ad092caff498a6ad603a03e.jpg',
-          isAFriend: false
+          isAFriend: false,
+          posts: []
 
         }
 
@@ -104,13 +105,50 @@ export default {
     newFriend(data) {
 
       this.allPeople.find(item => item.id === Number(data)).isAFriend = true
-      this.userFriends.push(this.allPeople.find(item => item.id === Number(data)))
+      this.user.friends.push(this.allPeople.find(item => item.id === Number(data)))
 
     },
     removingFriend(data) {
       this.allPeople.find(item => item.id === Number(data)).isAFriend = false
-      this.userFriends = this.userFriends.filter(item => item.id !== Number(data))
+      this.user.friends = this.user.friends.filter(item => item.id !== Number(data))
     },
+    saveUserPost(data) {
+      this.user.posts.push(data)
+    },
+    catchLike(data) {
+      if (Number(data.authorNumber) === this.user.id) {
+        this.user.posts.forEach(item => {
+          if (item.time === Number(data.postNumber)) {
+            if (!item.likedUsers.includes(data.authorNumber)) {
+              item.likedUsers.push(data.authorNumber);
+              item.likes += 1;
+            } else {
+              item.likedUsers = item.likedUsers.filter(itemInner => itemInner !== data.authorNumber);
+              item.likes -= 1;
+            }
+          }
+        })
+      } else {
+        let findedUser = this.allPeople.find(item => item.id === Number(data.authorNumber))
+        findedUser.posts.forEach(item => {
+          if (item.time === Number(data.postNumber)) {
+            if (!item.likedUsers.includes(data.authorNumber)) {
+              item.likedUsers.push(data.authorNumber);
+              item.likes += 1;
+            } else {
+              item.likedUsers = item.likedUsers.filter(itemInner => itemInner !== data.authorNumber);
+              item.likes -= 1;
+            }
+          }
+        } )
+      }
+    },
+
+
+
+
+
+
     beforeEnter(el) {
       el.style.opacity = 0;
       el.style.height = '0em'

@@ -2,7 +2,7 @@
 <div class="div__start">
     <img class="img__myProfile" src="https://cdn.igromania.ru/mnt/news/7/6/b/a/7/6/86257/6122e9f65da7ef05_1920xH.jpg" alt="">
     <div class="div__name">
-        <p><strong>Iron Man</strong></p>
+        <p><strong>{{userPersonal.name + ' ' + userPersonal.surName}}</strong></p>
         <p>Why quarrel if you can be friends</p>
         <p class="lastChild__divName">Online</p>
     </div>
@@ -12,11 +12,11 @@
     <div class="div__info">
         <div class="friend">
             <img class="div__info__img" :src="iconFriends" alt="">
-            <span>{{numberOfFriends}}</span>
+            <span>{{userPersonal.friends.length}}</span>
         </div>
         <div class="city">
             <img class="div__info__img" :src="iconCity" alt="">
-            <span>New York city </span>
+            <span>{{userPersonal.location}} </span>
         </div>
         <div class="subscribers">
             <img class="div__info__img" :src="iconSub" alt="">
@@ -60,10 +60,10 @@
 <script>
 export default {
 name: "MyProfile",
+  props: ['userPersonal'],
 data() {
     return {
         iconFriends: require('@/assets/user-alt-solid.svg'),
-        numberOfFriends: 50,
         iconCity: require('@/assets/home-solid.svg'),
         iconSub: require('@/assets/wifi-solid.svg'),
         iconDetails: require('@/assets/info-circle-solid.svg'),
