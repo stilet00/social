@@ -122,7 +122,6 @@ export default {
       if (Number(data.postAuthor) === this.user.id) {
         let currentPost = this.user.posts.find(item => item.time === Number(data.postId));
         currentPost.comments.push(data)
-        console.log(currentPost.comments)
       } else {
 
         let postOwner = this.allPeople.find(item => Number(data.postAuthor) === item.id)
