@@ -4,12 +4,13 @@
       :loggedUser="this.userPersonal"
       @postCreated="translatePost"
   />
-  <ul>
+  <transition-group tag="ul" name="slide-up">
     <li
         v-for="object in allPosts"
         :key="object.time"
         :id="object.time"
         class="post"
+        :data-author="object.authorId"
     >
         <img :src="object.photo" alt="" height="50px" width="50px">
         <h2>{{object.author}}</h2>
@@ -17,29 +18,45 @@
         <p>{{object.description}}</p>
         <button
         @click="postLiked"
-        >{{object.likes}} - likes</button>
+        > {{object.likedUsers.length}} - likes</button>
         <span>{{object.comments.length}} - comments</span>
-        <button>Leave a comment</button>
-
+        <CommentCreatingBlock
+            :user="userPersonal"
+             v-if="showComments"
+            @newComment="translateComment"
+        />
+        <CommentsBlock
+        v-if="object.comments.length>0"
+        :allComments="object.comments"
+        />
     </li>
-  </ul>
+  </transition-group>
 </div>
 </template>
 
 <script>
 import PostCreate from "@/components/PostCreate";
+import CommentCreatingBlock from "@/components/CommentCreatingBlock";
+import CommentsBlock from "@/components/CommentsBlock";
 export default {
   props:['userPersonal', 'people'],
   name: "News",
-  components: {PostCreate},
+  components: {CommentsBlock, CommentCreatingBlock, PostCreate},
   data() {
     return {
-      allPosts: []
+      allPosts: [],
+      showComments: true
     }
   },
   methods: {
     translatePost(data) {
-      this.$emit('newPost', data)
+      this.$emit('newPost', data);
+      this.allPosts.push(data);
+      this.sortPosts();
+    },
+    translateComment(data) {
+
+      this.$emit('newComment', data)
     },
     postLiked(e) {
      let newPost = this.allPosts.find(item => {
@@ -49,6 +66,11 @@ export default {
       this.$emit('postLiked', {
         authorNumber: newPost.authorId,
         postNumber: e.target.parentNode.id,
+      })
+    },
+    sortPosts() {
+      this.allPosts.sort((a, b) => {
+        return b.time - a.time
       })
     }
   },
@@ -60,9 +82,7 @@ export default {
         this.allPosts.push(...item.posts)
       }
 })
-    this.allPosts.sort((a, b) => {
-      return b.time - a.time
-    })
+    this.sortPosts();
   }
 }
 </script>
@@ -85,5 +105,13 @@ li {
   margin-bottom: 20px;
   list-style-type: none;
 }
+/*animating list*/
 
+.slide-up-enter-active, .slide-up-leave-active {
+  transition: all 1s ease;
+}
+.slide-up-enter, .slide-up-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}
 </style>

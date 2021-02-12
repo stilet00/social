@@ -22,7 +22,9 @@
         @friendAdded="newFriend"
         @friendRemoved="removingFriend"
         @newPost="saveUserPost"
+        @newComment="saveUserComment"
         @postLiked="catchLike"
+
         :friends="user.friends"
         :people="allPeople"
         :userPersonal="user"
@@ -115,16 +117,29 @@ export default {
     saveUserPost(data) {
       this.user.posts.push(data)
     },
+    saveUserComment(data) {
+
+      if (Number(data.postAuthor) === this.user.id) {
+        let currentPost = this.user.posts.find(item => item.time === Number(data.postId));
+        currentPost.comments.push(data)
+        console.log(currentPost.comments)
+      } else {
+
+        let postOwner = this.allPeople.find(item => Number(data.postAuthor) === item.id)
+
+        let hisPost = postOwner.posts.find(item => Number(data.postId) === item.time)
+        hisPost.comments.push(data)
+      }
+
+    },
     catchLike(data) {
       if (Number(data.authorNumber) === this.user.id) {
         this.user.posts.forEach(item => {
           if (item.time === Number(data.postNumber)) {
             if (!item.likedUsers.includes(data.authorNumber)) {
               item.likedUsers.push(data.authorNumber);
-              item.likes += 1;
             } else {
               item.likedUsers = item.likedUsers.filter(itemInner => itemInner !== data.authorNumber);
-              item.likes -= 1;
             }
           }
         })
