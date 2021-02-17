@@ -12,9 +12,11 @@
         class="post"
         :data-author="object.authorId"
     >
-        <img :src="object.photo" alt="" height="50px" width="50px">
-        <h2>{{object.author}}</h2>
-        <span>At {{object.date}} twitted: </span>
+        <div class="post__autor">
+          <img :src="object.photo" alt="" height="50px" width="50px">
+          <h2>{{object.author}}</h2>
+          <span>At {{object.date}} twitted: </span>
+        </div>
         <p>{{object.description}}</p>
         <button
         @click="postLiked"
@@ -91,20 +93,50 @@ export default {
 .news {
   box-sizing: border-box;
 }
-.post {
-  padding: 10px;
-  width: 100%;
-  box-shadow: 5px 5px 5px grey;
-  border: 1px solid grey;
-}
 ul {
- padding-left: 0;
+  padding: 15px;
   box-sizing: border-box;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
-li {
+.post {
+  width: 100%;
+  border-bottom: 5px solid #e4e6e9;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
   margin-bottom: 20px;
   list-style-type: none;
 }
+.post p {
+  width: 100%;
+  margin: 25px 0;
+}
+.post button {
+  border: none;
+  background: #99a2ad;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+.post__autor {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+.post__autor h2 {
+  margin: 0;
+}
+.post__autor span {
+  position: absolute;
+  top: 29px;
+  left: 51px;
+}
+
+
 /*animating list*/
 
 .slide-up-enter-active, .slide-up-leave-active {

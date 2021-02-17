@@ -82,6 +82,7 @@ data() {
 .div__start {
     display:flex;
     flex-wrap: wrap;
+    padding: 10px;
 }
 .img__myProfile {
     width: 80px;

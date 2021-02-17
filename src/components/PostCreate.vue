@@ -31,10 +31,30 @@ export default {
 <style scoped>
 .post-container {
   width: 100%;
-  border: 1px solid black;
+  border-top: 5px solid #e4e6e9;
+  border-bottom: 5px solid #e4e6e9;
+  display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+  align-items: center;
+  margin-top: 10px;
 }
-img {
+.post-container img {
+  width: 10%;
+  height: 30px;
   border-radius: 50%;
 }
-
+.post-container input {
+  background: #ebedf0;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  padding-left: 10px;
+}
+.post-container button {
+  border: none;
+  border-radius: 5px;
+  height: 25px;
+  color: #3f8ae0;
+}
 </style>

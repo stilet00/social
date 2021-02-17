@@ -26,13 +26,15 @@ name: "CommentCreatingBlock",
 <style scoped>
 .comments {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 90%;
   height: 50px;
   border: 1px solid grey;
   border-radius: 5px;
   align-items: center;
-
+  box-shadow: 2px 2px 2px 2px grey;
+  border: none;
+  margin-bottom: 10px;
 }
 .comments img {
   width: 10%;
@@ -44,8 +46,14 @@ name: "CommentCreatingBlock",
   height: 30px;
   border-radius: 20px;
   outline: none;
+  border: none;
+  background: #ebedf0;
+  padding-left: 10px;
 }
-button  {
-  width: 20%;
+.comments button  {
+  width: 25%;
+  color: #3f8ae2;
+  border: none;
+  border-radius: 5px;
 }
 </style>
