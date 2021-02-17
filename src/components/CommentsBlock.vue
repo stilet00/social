@@ -27,4 +27,7 @@ name: "CommentsBlock",
 
 <style scoped>
 
+li {
+  list-style: none;
+}
 </style>
