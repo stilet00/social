@@ -92,6 +92,7 @@ export default {
 <style scoped>
 .news {
   box-sizing: border-box;
+  position: relative;
 }
 ul {
   padding: 15px;
@@ -100,15 +101,23 @@ ul {
   align-items: center;
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 .post {
   width: 100%;
-  border-bottom: 5px solid #e4e6e9;
+  /* border-bottom: 5px solid #e4e6e9; */
   display: flex;
   flex-wrap: wrap;
   padding: 5px;
   margin-bottom: 20px;
   list-style-type: none;
+  
+}
+.post::after {
+  content: "";
+  border-bottom: 5px solid #e4e6e9;
+  width: 100%;
+  
 }
 .post p {
   width: 100%;
@@ -146,4 +155,6 @@ ul {
   transform: translateY(10px);
   opacity: 0;
 }
+
+
 </style>

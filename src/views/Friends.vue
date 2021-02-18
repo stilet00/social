@@ -50,5 +50,18 @@ li {
 }
 button {
   width: 27%;
+  border: none; 
+  outline: none;
+  height: 30px;
+  border-radius: 5px;
+  color: #3f8ae6;
+}
+@media (min-width: 490px) {
+  li {
+    justify-content: center;
+  }
+  ul li h2 {
+    margin: 0 20px;
+  }
 }
 </style>

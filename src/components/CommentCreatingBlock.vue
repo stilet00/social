@@ -56,4 +56,10 @@ name: "CommentCreatingBlock",
   border: none;
   border-radius: 5px;
 }
+
+@media (min-width: 490px) {
+  .comments img {
+    width: 5%;
+  }
+}
 </style>

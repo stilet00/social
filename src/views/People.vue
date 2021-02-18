@@ -48,10 +48,26 @@ ul {
 }
 li {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 10px;
   border-radius: 10px;
   box-sizing: border-box;
   align-items: center;
+}
+button {
+  border: none; 
+  outline: none;
+  height: 30px;
+  border-radius: 5px;
+  color: #3f8ae6;
+}
+
+@media (min-width: 490px) {
+  li {
+    justify-content: center;
+  }
+  ul li h2 {
+    margin: 0 20px;
+  }
 }
 </style>

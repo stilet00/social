@@ -57,4 +57,15 @@ export default {
   height: 25px;
   color: #3f8ae0;
 }
+@media (min-width: 490px) {
+  .post-container {
+    justify-content: center;    
+  }
+  .post-container img {
+    width: 5%;
+  }
+  .post-container input {
+    margin: 0 30px;
+  }
+}
 </style>
