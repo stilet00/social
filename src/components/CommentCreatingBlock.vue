@@ -61,5 +61,10 @@ name: "CommentCreatingBlock",
   .comments img {
     width: 5%;
   }
+  .comments button  {
+    width: 15%;
+    height: 25px;
+  }
+
 }
 </style>

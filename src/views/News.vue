@@ -156,5 +156,20 @@ ul {
   opacity: 0;
 }
 
-
+@media (min-width: 800px) {
+  .post{
+    width: 80%;
+  }
+  .post::after {
+  content: "";
+  border-bottom: 5px solid #e4e6e9;
+  width: 90%;
+  
+}
+}
+@media (min-width: 1200px) {
+  .post{
+    width: 50%;
+  }
+}
 </style>

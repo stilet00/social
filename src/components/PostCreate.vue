@@ -68,4 +68,9 @@ export default {
     margin: 0 30px;
   }
 }
+@media (min-width: 800px) {
+  .post-container img {
+    width: 2%;
+  }
+}
 </style>
