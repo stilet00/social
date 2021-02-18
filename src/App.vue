@@ -74,8 +74,8 @@ export default {
           thumbnail: 'https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg',
           isAFriend: false,
           posts: [
-            { "authorId": "1231230424124", "author": "Hulk vasilievych", "photo": "https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg", "date": "17:54 - 11/02/2021", "time": 1613058870452, "description": "Let's crush some buildings!!!", "comments": [], "likes": 0, "likedUsers": [] },
-            { "authorId": "1231230424124", "author": "Hulk vasilievych", "photo": "https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg", "date": "18:06 - 11/02/2021", "time": 1613058870453, "description": "I am tired!!!", "comments": [], "likes": 10, "likedUsers": [] }
+            { "authorId": "1231230424124", "author": "Hulk vasilievych", "photo": "https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg", "date": "17:54 - 11/02/2021", "time": 1613058870452, "description": "Let's crush some buildings!!!", "comments": [], "likedUsers": [] },
+            { "authorId": "1231230424124", "author": "Hulk vasilievych", "photo": "https://i.pinimg.com/originals/98/fa/60/98fa60221fbc02722d2fd725238a07ec.jpg", "date": "18:06 - 11/02/2021", "time": 1613058870453, "description": "I am tired!!!", "comments": [], "likedUsers": [405565656, 405565655, 405565666, 54545454] }
           ]
 
         },
@@ -87,7 +87,7 @@ export default {
           thumbnail: 'https://i.pinimg.com/originals/5c/84/27/5c84270dc20df2dcfffe305d498dbfb4.jpg',
           isAFriend: false,
           posts: [
-            { "authorId": "405565656", "author": "Thor Odinovich", "photo": "https://i.pinimg.com/originals/5c/84/27/5c84270dc20df2dcfffe305d498dbfb4.jpg", "date": "18:07 - 11/02/2021", "time": 1613060925844, "description": "For ODIN!", "comments": [], "likes": 3, "likedUsers": [] }
+            { "authorId": "405565656", "author": "Thor Odinovich", "photo": "https://i.pinimg.com/originals/5c/84/27/5c84270dc20df2dcfffe305d498dbfb4.jpg", "date": "18:07 - 11/02/2021", "time": 1613060925844, "description": "For ODIN!", "comments": [], "likedUsers": [405565656, 405565655, 405565666, 54545454, 123, 2323, 4242424] }
           ]
 
         },
@@ -153,10 +153,11 @@ export default {
           if (item.time === Number(data.postNumber)) {
             if (!item.likedUsers.includes(data.authorNumber)) {
               item.likedUsers.push(data.authorNumber);
-              item.likes += 1;
+              console.log(data.authorNumber)
+
             } else {
               item.likedUsers = item.likedUsers.filter(itemInner => itemInner !== data.authorNumber);
-              item.likes -= 1;
+
             }
           }
         } )

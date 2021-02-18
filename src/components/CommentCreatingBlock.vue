@@ -16,8 +16,12 @@ name: "CommentCreatingBlock",
   props: ['user'],
   methods: {
   commentCreate(e) {
-    let comment = new Comment(this.user, e.target.previousSibling.value, e.target.parentNode.parentNode.dataset.author, e.target.parentNode.parentNode.id)
-    this.$emit('newComment', comment)
+    if (e.target.previousSibling.value.trim() !== '') {
+      let comment = new Comment(this.user, e.target.previousSibling.value, e.target.parentNode.parentNode.dataset.author, e.target.parentNode.parentNode.id)
+      this.$emit('newComment', comment)
+      e.target.previousSibling.value = ''
+    }
+
   }
   }
 }
